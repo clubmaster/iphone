@@ -7,11 +7,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController  <UITableViewDelegate>
 
-@property (nonatomic, retain) IBOutlet UITextField *urlField;
-@property (nonatomic, retain) IBOutlet UITextField *usernameField;
-@property (nonatomic, retain) IBOutlet UITextField *passwordField;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
 
 - (IBAction)login:(id)sender;
 

@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TableCellEvent : UITableViewCell
+@interface TableCellDetail : UITableViewCell
 
 @property (nonatomic, retain) UILabel *primaryLabel;
 @property (nonatomic, retain) UILabel *secondaryLabel;

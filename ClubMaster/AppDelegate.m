@@ -10,6 +10,7 @@
 #import "ListRegistrationsViewController.h"
 #import "SettingsViewController.h"
 #import "LoginViewController.h"
+#import "EventsViewController.h"
 
 @implementation AppDelegate
 
@@ -27,17 +28,18 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 
-    // Override point for customization after application launch.
     UIViewController *listRegistrationsViewController = [[[ListRegistrationsViewController alloc] initWithNibName:@"ListRegistrationsViewController" bundle:nil] autorelease];
-    
     UINavigationController *viewController1 = [[UINavigationController alloc] initWithRootViewController:listRegistrationsViewController];
 
-    UIViewController *viewController2 = [[[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil] autorelease];
+    UIViewController *eventsView = [[[EventsViewController alloc] initWithNibName:@"EventsViewController" bundle:nil] autorelease];
+    UINavigationController *viewController2 = [[UINavigationController alloc] initWithRootViewController:eventsView];
 
-    UIViewController *viewController3 = [[[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil] autorelease];
+    UIViewController *settingsView = [[[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil] autorelease];
+    UINavigationController *viewController3 = [[UINavigationController alloc] initWithRootViewController:settingsView];
 
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, viewController3, nil];
+
     self.window.rootViewController = self.tabBarController;
 
     [self.window makeKeyAndVisible];

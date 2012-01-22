@@ -5,9 +5,9 @@
 //  Created by Henrik Hansen on 19/01/12.
 //
 
-#import "TableCellEvent.h"
+#import "TableCellDetail.h"
 
-@implementation TableCellEvent
+@implementation TableCellDetail
 
 @synthesize primaryLabel, secondaryLabel;
 
@@ -43,8 +43,8 @@
 {
     [super layoutSubviews];
 
-    primaryLabel.frame = CGRectMake(10.0, 10.0, 80.0, 25);
-    secondaryLabel.frame = CGRectMake(85.0, 10.0, 210.0, 25);
+    primaryLabel.frame = CGRectMake(10.0, 10.0, 100.0, 25);
+    secondaryLabel.frame = CGRectMake(105.0, 10.0, 190.0, 25);
 }
 
 - (void)dealloc

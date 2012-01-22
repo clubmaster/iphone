@@ -6,10 +6,11 @@
 //
 
 #import "ListRegistrationsViewController.h"
-#import "ViewEventViewController.h"
+#import "ViewTeamViewController.h"
 #import "ASIHTTPRequest.h"
 #import "JSONKit.h"
 #import "TableCellEventList.h"
+#import "ISO8601DateFormatter.h"
 
 @interface ListRegistrationsViewController ()
 - (void)loadEventsFromLogin;
@@ -25,6 +26,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.title = NSLocalizedString(@"Teams", @"");
         self.tabBarItem.image = [UIImage imageNamed:@"registrations"];
     }
     return self;
@@ -41,7 +43,6 @@
 {
     [super viewDidLoad];
 
-    self.title = NSLocalizedString(@"Teams", @"");
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 }
 
@@ -56,19 +57,21 @@
 {
     [super viewWillAppear:animated];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadEventsFromLogin) name:@"loadEventsFromLogin" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadEventsFromLogin) name:@"loadEventsFromLogin" object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+
+    [self loadEventsFromLogin];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
 
-    [[NSNotificationCenter defaultCenter] removeObserver:@"loadEventsFromLogin"];
+    //[[NSNotificationCenter defaultCenter] removeObserver:@"loadEventsFromLogin"];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -110,12 +113,36 @@
         NSDictionary *data = [registrations objectAtIndex:indexPath.row];
         cell.primaryLabel.text = [data objectForKey:@"team_name"];
         cell.secondaryLabel.text = [data objectForKey:@"description"];
-        cell.thirdLabel.text = [data objectForKey:@"first_date"];        
+
+        ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
+        NSDate *theDate = [formatter dateFromString:[data objectForKey:@"first_date"]];
+        [formatter release], formatter = nil;
+
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+
+        [df setDateFormat:@"dd MMM yyyy HH:mm"];
+        NSString *date = [NSString stringWithFormat:@"%@", [df stringFromDate:theDate]];
+
+        cell.thirdLabel.text = [NSString stringWithFormat:@"%@", date];
+
+        [df release];
     } else {
         NSDictionary *data = [upcomingEvents objectAtIndex:indexPath.row];
         cell.primaryLabel.text = [data objectForKey:@"team_name"];
         cell.secondaryLabel.text = [data objectForKey:@"description"];
-        cell.thirdLabel.text = [data objectForKey:@"first_date"];
+
+        ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
+        NSDate *theDate = [formatter dateFromString:[data objectForKey:@"first_date"]];
+        [formatter release], formatter = nil;
+
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+
+        [df setDateFormat:@"dd MMM yyyy HH:mm"];
+        NSString *date = [NSString stringWithFormat:@"%@", [df stringFromDate:theDate]];
+
+        cell.thirdLabel.text = [NSString stringWithFormat:@"%@", date];
+
+        [df release];
     }
     
     return cell;
@@ -134,17 +161,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ViewEventViewController *viewEventViewController = [[ViewEventViewController alloc] init];
+    ViewTeamViewController *viewTeamViewController = [[ViewTeamViewController alloc] init];
 
     if (indexPath.section == 0) {
-        viewEventViewController.data = [registrations objectAtIndex:indexPath.row];
-        viewEventViewController.isAttending = YES;
+        viewTeamViewController.data = [registrations objectAtIndex:indexPath.row];
+        viewTeamViewController.isAttending = YES;
     } else {
-        viewEventViewController.isAttending = NO;
-        viewEventViewController.data = [upcomingEvents objectAtIndex:indexPath.row];
+        viewTeamViewController.isAttending = NO;
+        viewTeamViewController.data = [upcomingEvents objectAtIndex:indexPath.row];
     }
 
-    [self.navigationController pushViewController:viewEventViewController animated:YES];
+    [self.navigationController pushViewController:viewTeamViewController animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -155,38 +182,42 @@
 - (void)loadEventsFromLogin
 {
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
-    
+
     ASIHTTPRequest *requestUserRegistrations = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:kUserRegistrations, [preferences valueForKey:@"serverurl"]]]];
     [requestUserRegistrations setAuthenticationScheme:(NSString *)kCFHTTPAuthenticationSchemeBasic];
     [requestUserRegistrations startSynchronous];
-    
+
     NSError *error = [requestUserRegistrations error];
-    
+//NSLog(@"return string %@", [requestUserRegistrations responseString]);
+//NSLog(@"error code %d", [requestUserRegistrations responseStatusCode]);
     if (!error) {
         if ([requestUserRegistrations responseStatusCode] == 200) {
             NSData *jsonData = [requestUserRegistrations responseData];
             NSDictionary *jsonRegistrations = [jsonData objectFromJSONData];
-            
+
             NSLog(@"user registrations %@", jsonRegistrations);
             self.registrations = [jsonRegistrations objectForKey:@"data"];
         }
     }
+
     //NSLog(@"url %@", [NSURL URLWithString:[NSString stringWithFormat:kAllRegistrations, [preferences valueForKey:@"serverurl"]]]);
     ASIHTTPRequest *requestAllRegistrations = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:kAllRegistrations, [preferences valueForKey:@"serverurl"]]]];
     [requestAllRegistrations setAuthenticationScheme:(NSString *)kCFHTTPAuthenticationSchemeBasic];
     [requestAllRegistrations startSynchronous];
-    
+
     error = [requestAllRegistrations error];
-    
+
     if (!error) {
         if ([requestAllRegistrations responseStatusCode] == 200) {
             NSData *jsonData = [requestAllRegistrations responseData];
             NSDictionary *jsonRegistrations = [jsonData objectFromJSONData];
-            
+
             self.upcomingEvents = [jsonRegistrations objectForKey:@"data"];
         }
     }
-    
+
+    [self.tableView reloadData]; 
+
     //NSLog(@"all registrations %@", upcomingEvents);
 }
 

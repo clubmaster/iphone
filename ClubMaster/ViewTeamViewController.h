@@ -1,5 +1,5 @@
 //
-//  ViewEventViewController.h
+//  ViewTeamViewController.h
 //  ClubMaster
 //
 //  Created by Henrik Hansen on 18/01/12.
@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewEventViewController : UIViewController <UITableViewDelegate>
+@interface ViewTeamViewController : UIViewController <UITableViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet UIButton *attendingButton;

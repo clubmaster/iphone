@@ -1,16 +1,17 @@
 //
-//  ViewEventViewController.m
+//  ViewTeamViewController.m
 //  ClubMaster
 //
 //  Created by Henrik Hansen on 18/01/12.
 //
 
-#import "ViewEventViewController.h"
-#import "TableCellEvent.h"
-#import "ASIHTTPRequest.h"
+#import "ViewTeamViewController.h"
+#import "TableCellDetail.h"
 #import "ASIFormDataRequest.h"
+#import "JSONKit.h"
+#import "ISO8601DateFormatter.h"
 
-@implementation ViewEventViewController
+@implementation ViewTeamViewController
 
 @synthesize tableView;
 @synthesize data;
@@ -65,32 +66,66 @@
 
 - (NSInteger)tableView:(UITableView *)tw numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tw cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    
-    TableCellEvent *cell = [tw dequeueReusableCellWithIdentifier:CellIdentifier];
+
+    TableCellDetail *cell = [tw dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[TableCellEvent alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[TableCellDetail alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
     if (indexPath.row == 0) {
+        ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
+        NSDate *theDate = [formatter dateFromString:[data objectForKey:@"first_date"]];
+        [formatter release], formatter = nil;
+
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+
+        [df setDateFormat:@"dd MMM yyyy"];
+        NSString *date = [NSString stringWithFormat:@"%@", [df stringFromDate:theDate]];
+
+        [df release];
+
         cell.primaryLabel.text = NSLocalizedString(@"Date", @"");
-        cell.secondaryLabel.text = [data objectForKey:@"first_date"];
+        cell.secondaryLabel.text = [NSString stringWithFormat:@"%@", date];
     } else if (indexPath.row == 1) {
+        ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
+        NSDate *theDate = [formatter dateFromString:[data objectForKey:@"first_date"]];
+        [formatter release], formatter = nil;
+
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+
+        [df setDateFormat:@"HH:mm"];
+        NSString *date = [NSString stringWithFormat:@"%@", [df stringFromDate:theDate]];
+
+        [df release];
+
         cell.primaryLabel.text = NSLocalizedString(@"Time", @"");
-        cell.secondaryLabel.text = [data objectForKey:@"first_date"];        
+        cell.secondaryLabel.text = date;        
     } else if (indexPath.row == 2) {
-        cell.primaryLabel.text = NSLocalizedString(@"Club", @"");
-        cell.secondaryLabel.text = [data objectForKey:@"xxxxx"];
+        cell.primaryLabel.text = NSLocalizedString(@"Level", @"");
+        cell.secondaryLabel.text = [data objectForKey:@"level"];
     } else if (indexPath.row == 3) {
-        cell.primaryLabel.text = NSLocalizedString(@"Instructor", @"");
+        cell.primaryLabel.text = NSLocalizedString(@"Club", @"");
+        cell.secondaryLabel.text = @"";
+    } else if (indexPath.row == 4) {
+        cell.primaryLabel.text = NSLocalizedString(@"Instructor(s)", @"");
+
         NSArray *instructors = [data objectForKey:@"instructors"];
+
         if ([instructors count]) {
-            cell.secondaryLabel.text = [instructors componentsJoinedByString:@", "];
+            NSMutableArray *instructorsArray = [[NSMutableArray alloc] init];
+            for (int i = 0; i < [instructors count]; i++) {
+                [instructorsArray addObject:[NSString stringWithFormat:@"%@ %@", [[instructors objectAtIndex:i] objectForKey:@"first_name"], [[instructors objectAtIndex:i] objectForKey:@"last_name"]]];                
+            }
+
+            cell.secondaryLabel.text = [instructorsArray componentsJoinedByString:@", "];
+
+            [instructorsArray release];
         } else {
             cell.secondaryLabel.text = @"";
         }
@@ -114,14 +149,16 @@
 {
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
     NSLog(@"url %@", [NSString stringWithFormat:kAttendTeam, [preferences valueForKey:@"serverurl"], [data objectForKey:@"id"]]);
-    ASIFormDataRequest *requestUserRegistrations = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:kAttendTeam, [preferences valueForKey:@"serverurl"], [data objectForKey:@"id"]]]];
-    [requestUserRegistrations setAuthenticationScheme:(NSString *)kCFHTTPAuthenticationSchemeBasic];
-    [requestUserRegistrations startSynchronous];
+    ASIFormDataRequest *requestAttend = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:kAttendTeam, [preferences valueForKey:@"serverurl"], [data objectForKey:@"id"]]]];
+    [requestAttend setAuthenticationScheme:(NSString *)kCFHTTPAuthenticationSchemeBasic];
+    [requestAttend startSynchronous];
 
-    NSError *error = [requestUserRegistrations error];
-    NSLog(@"status code %d", [requestUserRegistrations responseStatusCode]);
+    NSError *error = [requestAttend error];
+    NSLog(@"status code %d", [requestAttend responseStatusCode]);
+    NSLog(@"return string %@", [requestAttend responseString]);
+
     if (!error) {
-        if ([requestUserRegistrations responseStatusCode] == 200) {
+        if ([requestAttend responseStatusCode] == 200) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attend Success", @"")
                                                             message:nil
                                                            delegate:nil
@@ -133,7 +170,10 @@
             [unattendingButton setHidden:NO];
             [attendingButton setHidden:YES];            
         } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attend failed", @"")
+            NSData *jsonData = [requestAttend responseData];
+            NSString *errorMsg = [[jsonData objectFromJSONData] objectForKey:@"error_msg"];
+
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:errorMsg
                                                             message:nil
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
