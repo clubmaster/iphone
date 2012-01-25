@@ -7,7 +7,6 @@
 
 #import "LoginViewController.h"
 #import "ASIHTTPRequest.h"
-#import "User.h"
 #import "JSONKit.h"
 #import "TableCellDetail.h"
 

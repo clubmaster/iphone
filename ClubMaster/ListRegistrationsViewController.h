@@ -10,8 +10,10 @@
 @interface ListRegistrationsViewController : UIViewController <UITableViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) IBOutlet UILabel *name;
+@property (nonatomic, retain) IBOutlet UILabel *email;
+@property (nonatomic, retain) IBOutlet UIImageView *image;
 
 @property (nonatomic, retain) NSArray *registrations;
-@property (nonatomic, retain) NSArray *upcomingEvents;
 
 @end
