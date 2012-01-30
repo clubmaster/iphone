@@ -38,12 +38,13 @@
 		B7963E4414D0B7ED0063B03B /* attend.png in Resources */ = {isa = PBXBuildFile; fileRef = B7963E3B14D0B7ED0063B03B /* attend.png */; };
 		B7963E4514D0B7ED0063B03B /* cellbg.png in Resources */ = {isa = PBXBuildFile; fileRef = B7963E3C14D0B7ED0063B03B /* cellbg.png */; };
 		B7963E4614D0B7ED0063B03B /* cellframe.png in Resources */ = {isa = PBXBuildFile; fileRef = B7963E3D14D0B7ED0063B03B /* cellframe.png */; };
-		B7963E4714D0B7ED0063B03B /* clubmaster_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B7963E3E14D0B7ED0063B03B /* clubmaster_logo.png */; };
 		B7963E4814D0B7ED0063B03B /* clubmaster_logo114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = B7963E3F14D0B7ED0063B03B /* clubmaster_logo114x114.png */; };
 		B7963E4914D0B7ED0063B03B /* clubmaster_logo57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = B7963E4014D0B7ED0063B03B /* clubmaster_logo57x57.png */; };
 		B7963E4A14D0B7ED0063B03B /* events.png in Resources */ = {isa = PBXBuildFile; fileRef = B7963E4114D0B7ED0063B03B /* events.png */; };
 		B7963E4B14D0B7ED0063B03B /* registrations.png in Resources */ = {isa = PBXBuildFile; fileRef = B7963E4214D0B7ED0063B03B /* registrations.png */; };
 		B7963E4C14D0B7ED0063B03B /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = B7963E4314D0B7ED0063B03B /* settings.png */; };
+		B7A13B2D14D730E400BBB642 /* clubmaster_logo_320x314.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A13B2C14D730E400BBB642 /* clubmaster_logo_320x314.png */; };
+		B7A13B3014D7339C00BBB642 /* unattend.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A13B2F14D7339C00BBB642 /* unattend.png */; };
 		B7CB1A201472C3F6002BB32D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7CB1A1F1472C3F6002BB32D /* UIKit.framework */; };
 		B7CB1A221472C3F6002BB32D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7CB1A211472C3F6002BB32D /* Foundation.framework */; };
 		B7CB1A241472C3F6002BB32D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7CB1A231472C3F6002BB32D /* CoreGraphics.framework */; };
@@ -110,12 +111,13 @@
 		B7963E3B14D0B7ED0063B03B /* attend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = attend.png; path = images/attend.png; sourceTree = "<group>"; };
 		B7963E3C14D0B7ED0063B03B /* cellbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cellbg.png; path = images/cellbg.png; sourceTree = "<group>"; };
 		B7963E3D14D0B7ED0063B03B /* cellframe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cellframe.png; path = images/cellframe.png; sourceTree = "<group>"; };
-		B7963E3E14D0B7ED0063B03B /* clubmaster_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = clubmaster_logo.png; path = images/clubmaster_logo.png; sourceTree = "<group>"; };
 		B7963E3F14D0B7ED0063B03B /* clubmaster_logo114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = clubmaster_logo114x114.png; path = images/clubmaster_logo114x114.png; sourceTree = "<group>"; };
 		B7963E4014D0B7ED0063B03B /* clubmaster_logo57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = clubmaster_logo57x57.png; path = images/clubmaster_logo57x57.png; sourceTree = "<group>"; };
 		B7963E4114D0B7ED0063B03B /* events.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = events.png; path = images/events.png; sourceTree = "<group>"; };
 		B7963E4214D0B7ED0063B03B /* registrations.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = registrations.png; path = images/registrations.png; sourceTree = "<group>"; };
 		B7963E4314D0B7ED0063B03B /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings.png; path = images/settings.png; sourceTree = "<group>"; };
+		B7A13B2C14D730E400BBB642 /* clubmaster_logo_320x314.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clubmaster_logo_320x314.png; sourceTree = "<group>"; };
+		B7A13B2F14D7339C00BBB642 /* unattend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unattend.png; sourceTree = "<group>"; };
 		B7CB1A1B1472C3F6002BB32D /* ClubMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClubMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7CB1A1F1472C3F6002BB32D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B7CB1A211472C3F6002BB32D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -158,9 +160,10 @@
 			isa = PBXGroup;
 			children = (
 				B7963E3B14D0B7ED0063B03B /* attend.png */,
+				B7A13B2F14D7339C00BBB642 /* unattend.png */,
 				B7963E3C14D0B7ED0063B03B /* cellbg.png */,
 				B7963E3D14D0B7ED0063B03B /* cellframe.png */,
-				B7963E3E14D0B7ED0063B03B /* clubmaster_logo.png */,
+				B7A13B2C14D730E400BBB642 /* clubmaster_logo_320x314.png */,
 				B7963E3F14D0B7ED0063B03B /* clubmaster_logo114x114.png */,
 				B7963E4014D0B7ED0063B03B /* clubmaster_logo57x57.png */,
 				B7963E4114D0B7ED0063B03B /* events.png */,
@@ -370,12 +373,13 @@
 				B7963E4414D0B7ED0063B03B /* attend.png in Resources */,
 				B7963E4514D0B7ED0063B03B /* cellbg.png in Resources */,
 				B7963E4614D0B7ED0063B03B /* cellframe.png in Resources */,
-				B7963E4714D0B7ED0063B03B /* clubmaster_logo.png in Resources */,
 				B7963E4814D0B7ED0063B03B /* clubmaster_logo114x114.png in Resources */,
 				B7963E4914D0B7ED0063B03B /* clubmaster_logo57x57.png in Resources */,
 				B7963E4A14D0B7ED0063B03B /* events.png in Resources */,
 				B7963E4B14D0B7ED0063B03B /* registrations.png in Resources */,
 				B7963E4C14D0B7ED0063B03B /* settings.png in Resources */,
+				B7A13B2D14D730E400BBB642 /* clubmaster_logo_320x314.png in Resources */,
+				B7A13B3014D7339C00BBB642 /* unattend.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +494,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClubMaster/ClubMaster-Prefix.pch";
 				INFOPLIST_FILE = "ClubMaster/ClubMaster-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -501,6 +506,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClubMaster/ClubMaster-Prefix.pch";
 				INFOPLIST_FILE = "ClubMaster/ClubMaster-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
