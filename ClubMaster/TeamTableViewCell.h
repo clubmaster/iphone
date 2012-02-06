@@ -15,4 +15,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *duration;
 @property (nonatomic, retain) IBOutlet UILabel *instructor;
 
+@property (nonatomic, retain) IBOutlet UIButton *attendButton;
+@property (nonatomic, retain) IBOutlet UIButton *unattendButton;
+
 @end

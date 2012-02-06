@@ -19,6 +19,8 @@
 		B75DB3A214CC79F2008193DF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B75DB3A114CC79F2008193DF /* CoreLocation.framework */; };
 		B77133E814C756F200D8BDA5 /* ViewTeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B77133E614C756F200D8BDA5 /* ViewTeamViewController.m */; };
 		B77133E914C756F200D8BDA5 /* ViewTeamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B77133E714C756F200D8BDA5 /* ViewTeamViewController.xib */; };
+		B77C159514E05B1E00413341 /* missing.png in Resources */ = {isa = PBXBuildFile; fileRef = B77C159414E05B1E00413341 /* missing.png */; };
+		B77C159914E05CDC00413341 /* gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = B77C159814E05CDC00413341 /* gradient.png */; };
 		B7963DE314D07BB70063B03B /* TeamTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7963DE214D07BB70063B03B /* TeamTableViewCell.m */; };
 		B7963DFA14D09AC60063B03B /* FindTeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7963DF814D09AC60063B03B /* FindTeamViewController.m */; };
 		B7963DFB14D09AC60063B03B /* FindTeamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7963DF914D09AC60063B03B /* FindTeamViewController.xib */; };
@@ -51,9 +53,9 @@
 		B7CB1A2A1472C3F6002BB32D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7CB1A281472C3F6002BB32D /* InfoPlist.strings */; };
 		B7CB1A2C1472C3F6002BB32D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7CB1A2B1472C3F6002BB32D /* main.m */; };
 		B7CB1A301472C3F6002BB32D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7CB1A2F1472C3F6002BB32D /* AppDelegate.m */; };
-		B7CB1A331472C3F6002BB32D /* ListRegistrationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7CB1A321472C3F6002BB32D /* ListRegistrationsViewController.m */; };
+		B7CB1A331472C3F6002BB32D /* MyTrainingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7CB1A321472C3F6002BB32D /* MyTrainingViewController.m */; };
 		B7CB1A3A1472C3F6002BB32D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7CB1A391472C3F6002BB32D /* SettingsViewController.m */; };
-		B7CB1A411472C3F6002BB32D /* ListRegistrationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7CB1A3F1472C3F6002BB32D /* ListRegistrationsViewController.xib */; };
+		B7CB1A411472C3F6002BB32D /* MyTrainingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7CB1A3F1472C3F6002BB32D /* MyTrainingViewController.xib */; };
 		B7CB1A441472C3F6002BB32D /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7CB1A421472C3F6002BB32D /* SettingsViewController.xib */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +77,8 @@
 		B77133E514C756F200D8BDA5 /* ViewTeamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewTeamViewController.h; sourceTree = "<group>"; };
 		B77133E614C756F200D8BDA5 /* ViewTeamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewTeamViewController.m; sourceTree = "<group>"; };
 		B77133E714C756F200D8BDA5 /* ViewTeamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewTeamViewController.xib; sourceTree = "<group>"; };
+		B77C159414E05B1E00413341 /* missing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missing.png; sourceTree = "<group>"; };
+		B77C159814E05CDC00413341 /* gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradient.png; sourceTree = "<group>"; };
 		B7963DE114D07BB70063B03B /* TeamTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamTableViewCell.h; sourceTree = "<group>"; };
 		B7963DE214D07BB70063B03B /* TeamTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamTableViewCell.m; sourceTree = "<group>"; };
 		B7963DF714D09AC60063B03B /* FindTeamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindTeamViewController.h; sourceTree = "<group>"; };
@@ -128,11 +132,11 @@
 		B7CB1A2D1472C3F6002BB32D /* ClubMaster-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClubMaster-Prefix.pch"; sourceTree = "<group>"; };
 		B7CB1A2E1472C3F6002BB32D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B7CB1A2F1472C3F6002BB32D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B7CB1A311472C3F6002BB32D /* ListRegistrationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListRegistrationsViewController.h; sourceTree = "<group>"; };
-		B7CB1A321472C3F6002BB32D /* ListRegistrationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListRegistrationsViewController.m; sourceTree = "<group>"; };
+		B7CB1A311472C3F6002BB32D /* MyTrainingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTrainingViewController.h; sourceTree = "<group>"; };
+		B7CB1A321472C3F6002BB32D /* MyTrainingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTrainingViewController.m; sourceTree = "<group>"; };
 		B7CB1A381472C3F6002BB32D /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		B7CB1A391472C3F6002BB32D /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		B7CB1A401472C3F6002BB32D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ListRegistrationsViewController.xib; sourceTree = "<group>"; };
+		B7CB1A401472C3F6002BB32D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MyTrainingViewController.xib; sourceTree = "<group>"; };
 		B7CB1A431472C3F6002BB32D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
 		B7FB5D5714744D8100100B37 /* MyApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyApp.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,15 +164,17 @@
 			isa = PBXGroup;
 			children = (
 				B7963E3B14D0B7ED0063B03B /* attend.png */,
-				B7A13B2F14D7339C00BBB642 /* unattend.png */,
 				B7963E3C14D0B7ED0063B03B /* cellbg.png */,
 				B7963E3D14D0B7ED0063B03B /* cellframe.png */,
 				B7A13B2C14D730E400BBB642 /* clubmaster_logo_320x314.png */,
 				B7963E3F14D0B7ED0063B03B /* clubmaster_logo114x114.png */,
 				B7963E4014D0B7ED0063B03B /* clubmaster_logo57x57.png */,
 				B7963E4114D0B7ED0063B03B /* events.png */,
+				B77C159814E05CDC00413341 /* gradient.png */,
+				B77C159414E05B1E00413341 /* missing.png */,
 				B7963E4214D0B7ED0063B03B /* registrations.png */,
 				B7963E4314D0B7ED0063B03B /* settings.png */,
+				B7A13B2F14D7339C00BBB642 /* unattend.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -264,10 +270,10 @@
 				B7963DF814D09AC60063B03B /* FindTeamViewController.m */,
 				B7228B5114CCA1D900FCC786 /* ISO8601DateFormatter.h */,
 				B7228B5214CCA1D900FCC786 /* ISO8601DateFormatter.m */,
-				B7CB1A311472C3F6002BB32D /* ListRegistrationsViewController.h */,
-				B7CB1A321472C3F6002BB32D /* ListRegistrationsViewController.m */,
 				B719CC2F14C3424A00972C7F /* LoginViewController.h */,
 				B719CC3014C3424A00972C7F /* LoginViewController.m */,
+				B7CB1A311472C3F6002BB32D /* MyTrainingViewController.h */,
+				B7CB1A321472C3F6002BB32D /* MyTrainingViewController.m */,
 				B7FB5D5714744D8100100B37 /* MyApp.h */,
 				B7CB1A381472C3F6002BB32D /* SettingsViewController.h */,
 				B7CB1A391472C3F6002BB32D /* SettingsViewController.m */,
@@ -303,7 +309,7 @@
 				B7963E1814D0B7360063B03B /* EventsViewController.xib */,
 				B7963DF914D09AC60063B03B /* FindTeamViewController.xib */,
 				B719CC3114C3424A00972C7F /* LoginViewController.xib */,
-				B7CB1A3F1472C3F6002BB32D /* ListRegistrationsViewController.xib */,
+				B7CB1A3F1472C3F6002BB32D /* MyTrainingViewController.xib */,
 				B7CB1A421472C3F6002BB32D /* SettingsViewController.xib */,
 				B7963E0814D0B5DA0063B03B /* TeamTableViewCell.xib */,
 				B77133E714C756F200D8BDA5 /* ViewTeamViewController.xib */,
@@ -363,7 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7CB1A2A1472C3F6002BB32D /* InfoPlist.strings in Resources */,
-				B7CB1A411472C3F6002BB32D /* ListRegistrationsViewController.xib in Resources */,
+				B7CB1A411472C3F6002BB32D /* MyTrainingViewController.xib in Resources */,
 				B7CB1A441472C3F6002BB32D /* SettingsViewController.xib in Resources */,
 				B719CC3314C3424A00972C7F /* LoginViewController.xib in Resources */,
 				B77133E914C756F200D8BDA5 /* ViewTeamViewController.xib in Resources */,
@@ -380,6 +386,8 @@
 				B7963E4C14D0B7ED0063B03B /* settings.png in Resources */,
 				B7A13B2D14D730E400BBB642 /* clubmaster_logo_320x314.png in Resources */,
 				B7A13B3014D7339C00BBB642 /* unattend.png in Resources */,
+				B77C159514E05B1E00413341 /* missing.png in Resources */,
+				B77C159914E05CDC00413341 /* gradient.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,7 +400,7 @@
 			files = (
 				B7CB1A2C1472C3F6002BB32D /* main.m in Sources */,
 				B7CB1A301472C3F6002BB32D /* AppDelegate.m in Sources */,
-				B7CB1A331472C3F6002BB32D /* ListRegistrationsViewController.m in Sources */,
+				B7CB1A331472C3F6002BB32D /* MyTrainingViewController.m in Sources */,
 				B7CB1A3A1472C3F6002BB32D /* SettingsViewController.m in Sources */,
 				B719CC3214C3424A00972C7F /* LoginViewController.m in Sources */,
 				B77133E814C756F200D8BDA5 /* ViewTeamViewController.m in Sources */,
@@ -426,12 +434,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		B7CB1A3F1472C3F6002BB32D /* ListRegistrationsViewController.xib */ = {
+		B7CB1A3F1472C3F6002BB32D /* MyTrainingViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B7CB1A401472C3F6002BB32D /* en */,
 			);
-			name = ListRegistrationsViewController.xib;
+			name = MyTrainingViewController.xib;
 			sourceTree = "<group>";
 		};
 		B7CB1A421472C3F6002BB32D /* SettingsViewController.xib */ = {

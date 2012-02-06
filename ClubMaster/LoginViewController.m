@@ -76,15 +76,10 @@
             NSData *jsonData = [request responseData];
             NSDictionary *jsonUser = [jsonData objectFromJSONData];
 
-            NSLog(@"user %@", jsonUser);
+            //NSLog(@"user %@", jsonUser);
 
-            NSMutableDictionary *user = [[NSMutableDictionary alloc] init];
-            [user setObject:[[jsonUser objectForKey:@"data"] valueForKey:@"member_number"] forKey:@"member_number"];
-
-            [preferences setObject:user forKey:@"user"];
+            [preferences setObject:[jsonUser objectForKey:@"data"] forKey:@"user"];
             [preferences synchronize];
-
-            [user release];
 
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadEventsFromLogin" object:nil];
 
@@ -93,7 +88,7 @@
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Wrong username and or password", @"")
                                                             message:nil
                                                            delegate:nil
-                                                  cancelButtonTitle:@"OK"
+                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"")
                                                   otherButtonTitles:nil];
             [alert show];
             [alert release];
@@ -102,7 +97,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Server fail", @"")
                                                         message:nil
                                                        delegate:nil
-                                              cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:NSLocalizedString(@"OK", @"")
                                               otherButtonTitles:nil];
         [alert show];
         [alert release];
@@ -170,11 +165,11 @@
     }
 
     if ([indexPath row] == 0) {
-        cell.textLabel.text = @"Server URL";
+        cell.textLabel.text = NSLocalizedString(@"Server URL", @"");
     } else if ([indexPath row] == 1) {
-        cell.textLabel.text = @"Account";
+        cell.textLabel.text = NSLocalizedString(@"Account", @"");
     } else {
-        cell.textLabel.text = @"Password";
+        cell.textLabel.text = NSLocalizedString(@"Password", @"");
     }
 
     return cell;

@@ -12,5 +12,6 @@
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 
 @property (nonatomic, retain) NSArray *registrations;
+@property (nonatomic, retain) NSArray *attendingRegistrations;
 
 @end

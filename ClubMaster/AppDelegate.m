@@ -7,7 +7,7 @@
 
 #import "AppDelegate.h"
 
-#import "ListRegistrationsViewController.h"
+#import "MyTrainingViewController.h"
 #import "SettingsViewController.h"
 #import "LoginViewController.h"
 #import "EventsViewController.h"
@@ -28,8 +28,8 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 
-    UIViewController *listRegistrationsViewController = [[[ListRegistrationsViewController alloc] initWithNibName:@"ListRegistrationsViewController" bundle:nil] autorelease];
-    UINavigationController *viewController1 = [[UINavigationController alloc] initWithRootViewController:listRegistrationsViewController];
+    UIViewController *myTrainingViewController = [[[MyTrainingViewController alloc] initWithNibName:@"MyTrainingViewController" bundle:nil] autorelease];
+    UINavigationController *viewController1 = [[UINavigationController alloc] initWithRootViewController:myTrainingViewController];
 
     UIViewController *eventsView = [[[EventsViewController alloc] initWithNibName:@"EventsViewController" bundle:nil] autorelease];
     UINavigationController *viewController2 = [[UINavigationController alloc] initWithRootViewController:eventsView];
