@@ -18,4 +18,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *attendButton;
 @property (nonatomic, retain) IBOutlet UIButton *unattendButton;
 
+@property (nonatomic, retain) IBOutlet UILabel *addToCalendarLabel;
+@property (nonatomic, retain) IBOutlet UIImageView *addToCalendarImage;
+
 @end

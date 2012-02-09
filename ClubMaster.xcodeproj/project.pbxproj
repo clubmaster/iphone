@@ -16,7 +16,6 @@
 		B719CC5B14C3534600972C7F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B719CC5A14C3534600972C7F /* MobileCoreServices.framework */; };
 		B719CC5D14C3535F00972C7F /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B719CC5C14C3535F00972C7F /* libz.1.2.5.dylib */; };
 		B7228B5314CCA1D900FCC786 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B7228B5214CCA1D900FCC786 /* ISO8601DateFormatter.m */; };
-		B75DB3A214CC79F2008193DF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B75DB3A114CC79F2008193DF /* CoreLocation.framework */; };
 		B77133E814C756F200D8BDA5 /* ViewTeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B77133E614C756F200D8BDA5 /* ViewTeamViewController.m */; };
 		B77133E914C756F200D8BDA5 /* ViewTeamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B77133E714C756F200D8BDA5 /* ViewTeamViewController.xib */; };
 		B77C159514E05B1E00413341 /* missing.png in Resources */ = {isa = PBXBuildFile; fileRef = B77C159414E05B1E00413341 /* missing.png */; };
@@ -57,6 +56,8 @@
 		B7CB1A3A1472C3F6002BB32D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7CB1A391472C3F6002BB32D /* SettingsViewController.m */; };
 		B7CB1A411472C3F6002BB32D /* MyTrainingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7CB1A3F1472C3F6002BB32D /* MyTrainingViewController.xib */; };
 		B7CB1A441472C3F6002BB32D /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7CB1A421472C3F6002BB32D /* SettingsViewController.xib */; };
+		B7F6F6EF14E409AA00691BFB /* cal.png in Resources */ = {isa = PBXBuildFile; fileRef = B7F6F6EE14E409AA00691BFB /* cal.png */; };
+		B7F6F70614E4116B00691BFB /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7F6F70514E4116B00691BFB /* EventKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,7 +74,6 @@
 		B719CC5C14C3535F00972C7F /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		B7228B5114CCA1D900FCC786 /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
 		B7228B5214CCA1D900FCC786 /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
-		B75DB3A114CC79F2008193DF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B77133E514C756F200D8BDA5 /* ViewTeamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewTeamViewController.h; sourceTree = "<group>"; };
 		B77133E614C756F200D8BDA5 /* ViewTeamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewTeamViewController.m; sourceTree = "<group>"; };
 		B77133E714C756F200D8BDA5 /* ViewTeamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewTeamViewController.xib; sourceTree = "<group>"; };
@@ -138,6 +138,8 @@
 		B7CB1A391472C3F6002BB32D /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B7CB1A401472C3F6002BB32D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MyTrainingViewController.xib; sourceTree = "<group>"; };
 		B7CB1A431472C3F6002BB32D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
+		B7F6F6EE14E409AA00691BFB /* cal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cal.png; sourceTree = "<group>"; };
+		B7F6F70514E4116B00691BFB /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		B7FB5D5714744D8100100B37 /* MyApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyApp.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,7 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B75DB3A214CC79F2008193DF /* CoreLocation.framework in Frameworks */,
+				B7F6F70614E4116B00691BFB /* EventKit.framework in Frameworks */,
 				B719CC5D14C3535F00972C7F /* libz.1.2.5.dylib in Frameworks */,
 				B7CB1A241472C3F6002BB32D /* CoreGraphics.framework in Frameworks */,
 				B719CC5B14C3534600972C7F /* MobileCoreServices.framework in Frameworks */,
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				B7963E3B14D0B7ED0063B03B /* attend.png */,
+				B7F6F6EE14E409AA00691BFB /* cal.png */,
 				B7963E3C14D0B7ED0063B03B /* cellbg.png */,
 				B7963E3D14D0B7ED0063B03B /* cellframe.png */,
 				B7A13B2C14D730E400BBB642 /* clubmaster_logo_320x314.png */,
@@ -245,7 +248,7 @@
 		B7CB1A1E1472C3F6002BB32D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B75DB3A114CC79F2008193DF /* CoreLocation.framework */,
+				B7F6F70514E4116B00691BFB /* EventKit.framework */,
 				B719CC5C14C3535F00972C7F /* libz.1.2.5.dylib */,
 				B719CC5A14C3534600972C7F /* MobileCoreServices.framework */,
 				B719CC5814C3533900972C7F /* SystemConfiguration.framework */,
@@ -388,6 +391,7 @@
 				B7A13B3014D7339C00BBB642 /* unattend.png in Resources */,
 				B77C159514E05B1E00413341 /* missing.png in Resources */,
 				B77C159914E05CDC00413341 /* gradient.png in Resources */,
+				B7F6F6EF14E409AA00691BFB /* cal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,10 +17,13 @@
 #import "JSONKit.h"
 #import "ISO8601DateFormatter.h"
 
+#import <EventKit/EventKit.h>
+
 @interface MyTrainingViewController ()
 - (void)loadEventsFromLogin;
 - (void)find;
 - (void)unattend:(UIButton *)sender;
+- (void)addToCalendar:(UITapGestureRecognizer *)sender;
 @end
 
 @implementation MyTrainingViewController
@@ -172,6 +175,20 @@
 
     [df release];
 
+    cell.addToCalendarImage.userInteractionEnabled = YES;
+
+    UITapGestureRecognizer *addToCalImageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addToCalendar:)];
+    addToCalImageTap.cancelsTouchesInView = YES;
+    [cell.addToCalendarImage addGestureRecognizer:addToCalImageTap];
+    [addToCalImageTap release];
+
+    cell.addToCalendarLabel.userInteractionEnabled = YES;
+
+    UITapGestureRecognizer *addToCalLabelTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addToCalendar:)];
+    addToCalLabelTap.cancelsTouchesInView = YES;
+    [cell.addToCalendarLabel addGestureRecognizer:addToCalLabelTap];
+    [addToCalLabelTap release];
+
     return cell;
 }
 
@@ -271,6 +288,49 @@
         }
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Server fail", @"")
+                                                        message:nil
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+}
+
+- (void)addToCalendar:(UITapGestureRecognizer *)sender
+{
+    NSIndexPath *indexPath = [tableView indexPathForCell:(UITableViewCell *)[[[sender view] superview] superview]];
+
+    NSLog(@"add to cal tapped %d", indexPath.row);
+
+    NSDictionary *data = [registrations objectAtIndex:indexPath.row];
+
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+
+    EKEvent *event = [EKEvent eventWithEventStore:eventStore];
+    event.title = [data objectForKey:@"team_name"];
+
+    ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
+    event.startDate = [formatter dateFromString:[data objectForKey:@"first_date"]];
+    event.endDate = [formatter dateFromString:[data objectForKey:@"end_date"]];
+
+    [event setCalendar:[eventStore defaultCalendarForNewEvents]];
+
+    [event addAlarm:[EKAlarm alarmWithRelativeOffset:60.0f * -15.0f]];
+
+    NSError *eventError;
+    [eventStore saveEvent:event span:EKSpanThisEvent error:&eventError]; 
+
+    if (eventError) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
+                                                        message:[eventError localizedDescription]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Event added to calendar", @"")
                                                         message:nil
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"

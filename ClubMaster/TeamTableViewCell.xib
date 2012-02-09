@@ -59,7 +59,7 @@
 							<object class="IBUILabel" id="234565064">
 								<reference key="NSNextResponder" ref="561482073"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{74, 8}, {226, 21}}</string>
+								<string key="NSFrame">{{74, 8}, {131, 21}}</string>
 								<reference key="NSSuperview" ref="561482073"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="413656589"/>
@@ -115,7 +115,7 @@
 								<string key="NSFrame">{{12, 38}, {54, 21}}</string>
 								<reference key="NSSuperview" ref="561482073"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="481045751"/>
+								<reference key="NSNextKeyView" ref="1030665790"/>
 								<string key="NSReuseIdentifierKey">_NS:328</string>
 								<reference key="IBUIBackgroundColor" ref="892066390"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -169,10 +169,10 @@
 							<object class="IBUILabel" id="481045751">
 								<reference key="NSNextResponder" ref="561482073"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{74, 25}, {226, 21}}</string>
+								<string key="NSFrame">{{208, 8}, {52, 21}}</string>
 								<reference key="NSSuperview" ref="561482073"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="1030665790"/>
+								<reference key="NSNextKeyView" ref="18126886"/>
 								<string key="NSReuseIdentifierKey">_NS:328</string>
 								<reference key="IBUIBackgroundColor" ref="892066390"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -180,7 +180,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Length of session</string>
+								<string key="IBUIText">Length</string>
 								<reference key="IBUITextColor" ref="65840331"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
@@ -200,10 +200,10 @@
 							<object class="IBUILabel" id="1030665790">
 								<reference key="NSNextResponder" ref="561482073"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{74, 40}, {226, 21}}</string>
+								<string key="NSFrame">{{74, 25}, {131, 21}}</string>
 								<reference key="NSSuperview" ref="561482073"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="592084654"/>
+								<reference key="NSNextKeyView" ref="481045751"/>
 								<string key="NSReuseIdentifierKey">_NS:328</string>
 								<reference key="IBUIBackgroundColor" ref="892066390"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -222,7 +222,7 @@
 							<object class="IBUIButton" id="592084654">
 								<reference key="NSNextResponder" ref="561482073"/>
 								<int key="NSvFlags">-2147483356</int>
-								<string key="NSFrame">{{208, 23}, {85, 30}}</string>
+								<string key="NSFrame">{{208, 29}, {85, 30}}</string>
 								<reference key="NSSuperview" ref="561482073"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="11152002"/>
@@ -255,7 +255,7 @@
 							<object class="IBUIButton" id="11152002">
 								<reference key="NSNextResponder" ref="561482073"/>
 								<int key="NSvFlags">-2147483356</int>
-								<string key="NSFrame">{{208, 23}, {85, 30}}</string>
+								<string key="NSFrame">{{208, 29}, {85, 30}}</string>
 								<reference key="NSSuperview" ref="561482073"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -277,6 +277,48 @@
 								</object>
 								<reference key="IBUIFontDescription" ref="767856851"/>
 								<reference key="IBUIFont" ref="605019298"/>
+							</object>
+							<object class="IBUILabel" id="534071516">
+								<reference key="NSNextResponder" ref="561482073"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{93, 45}, {107, 21}}</string>
+								<reference key="NSSuperview" ref="561482073"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="592084654"/>
+								<string key="NSReuseIdentifierKey">_NS:328</string>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">7</int>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<string key="IBUIText">Add to calendar</string>
+								<object class="NSColor" key="IBUITextColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MSAxIDEAA</bytes>
+									<object class="NSColorSpace" key="NSCustomColorSpace">
+										<int key="NSID">1</int>
+									</object>
+								</object>
+								<nil key="IBUIHighlightedColor"/>
+								<int key="IBUIBaselineAdjustment">1</int>
+								<float key="IBUIMinimumFontSize">10</float>
+								<reference key="IBUIFontDescription" ref="913995578"/>
+								<reference key="IBUIFont" ref="981575440"/>
+							</object>
+							<object class="IBUIImageView" id="18126886">
+								<reference key="NSNextResponder" ref="561482073"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{74, 47}, {16, 16}}</string>
+								<reference key="NSSuperview" ref="561482073"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="534071516"/>
+								<string key="NSReuseIdentifierKey">_NS:567</string>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">cal.png</string>
+								</object>
 							</object>
 						</array>
 						<string key="NSFrameSize">{300, 79}</string>
@@ -361,6 +403,22 @@
 					</object>
 					<int key="connectionID">24</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">addToCalendarLabel</string>
+						<reference key="source" ref="480120926"/>
+						<reference key="destination" ref="534071516"/>
+					</object>
+					<int key="connectionID">27</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">addToCalendarImage</string>
+						<reference key="source" ref="480120926"/>
+						<reference key="destination" ref="18126886"/>
+					</object>
+					<int key="connectionID">28</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -386,14 +444,16 @@
 						<reference key="object" ref="480120926"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="234565064"/>
-							<reference ref="481045751"/>
-							<reference ref="256612451"/>
 							<reference ref="15216519"/>
 							<reference ref="1030665790"/>
 							<reference ref="413656589"/>
 							<reference ref="146219063"/>
+							<reference ref="481045751"/>
 							<reference ref="592084654"/>
 							<reference ref="11152002"/>
+							<reference ref="534071516"/>
+							<reference ref="256612451"/>
+							<reference ref="18126886"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -442,6 +502,16 @@
 						<reference key="object" ref="11152002"/>
 						<reference key="parent" ref="480120926"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">25</int>
+						<reference key="object" ref="534071516"/>
+						<reference key="parent" ref="480120926"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">26</int>
+						<reference key="object" ref="18126886"/>
+						<reference key="parent" ref="480120926"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -456,6 +526,8 @@
 				<real value="0.0" key="19.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="20.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="0.0" key="20.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<string key="25.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.CustomClassName">TeamTableViewCell</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -466,7 +538,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">24</int>
+			<int key="maxID">28</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -474,6 +546,8 @@
 					<string key="className">TeamTableViewCell</string>
 					<string key="superclassName">UITableViewCell</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="addToCalendarImage">UIImageView</string>
+						<string key="addToCalendarLabel">UILabel</string>
 						<string key="attendButton">UIButton</string>
 						<string key="date">UILabel</string>
 						<string key="duration">UILabel</string>
@@ -483,6 +557,14 @@
 						<string key="unattendButton">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="addToCalendarImage">
+							<string key="name">addToCalendarImage</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="addToCalendarLabel">
+							<string key="name">addToCalendarLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="attendButton">
 							<string key="name">attendButton</string>
 							<string key="candidateClassName">UIButton</string>
@@ -525,6 +607,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="attend.png">{80, 40}</string>
+			<string key="cal.png">{16, 16}</string>
 			<string key="cellbg.png">{300, 84}</string>
 			<string key="cellframe.png">{66, 66}</string>
 			<string key="unattend.png">{80, 40}</string>

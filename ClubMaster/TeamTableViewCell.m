@@ -16,6 +16,8 @@
 @synthesize instructor;
 @synthesize attendButton;
 @synthesize unattendButton;
+@synthesize addToCalendarLabel;
+@synthesize addToCalendarImage;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
