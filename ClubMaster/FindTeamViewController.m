@@ -74,13 +74,24 @@
             NSData *jsonData = [requestUserRegistrations responseData];
             NSDictionary *jsonRegistrations = [jsonData objectFromJSONData];
             
-            NSLog(@"user registrations %@", jsonRegistrations);
-            self.registrations = [jsonRegistrations objectForKey:@"data"];
+            //NSLog(@"user registrations %@", jsonRegistrations);
+            NSMutableArray *tmpRegistrations = [[NSMutableArray alloc] initWithArray:[jsonRegistrations objectForKey:@"data"]];
+
+            for (int i = 0; i < [tmpRegistrations count]; i++) {
+                NSDictionary *data = [tmpRegistrations objectAtIndex:i];
+                if ([attendingRegistrations containsObject:data]) {
+                    NSLog(@"removing %d", i);
+                    [tmpRegistrations removeObjectAtIndex:i];
+                }
+            }
+
+            self.registrations = tmpRegistrations;
+            [tmpRegistrations release];
         }
     }
-    
-    [self.tableView reloadData]; 
 
+
+    //[self.tableView reloadData];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -117,13 +128,7 @@
 
     NSDictionary *data = [registrations objectAtIndex:indexPath.row];
 
-    if ([attendingRegistrations containsObject:data]) {
-        cell.attendButton.hidden = YES;
-        cell.unattendButton.hidden = YES;        
-    } else {
-        cell.attendButton.hidden = NO;
-        cell.unattendButton.hidden = YES;
-    }
+    cell.attendButton.hidden = NO;
 
     cell.attendButton.tag = indexPath.row;
 
@@ -152,17 +157,20 @@
     cell.duration.text = [NSString stringWithFormat:@"%02d:%02d", [components hour], [components minute]];
 
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    
+
     [df setDateFormat:@"HH:mm"];
-    
+
     cell.time.text = [NSString stringWithFormat:@"%@", [df stringFromDate:firstDate]];
-    
+
     [df setDateFormat:@"MMM dd"];
-    
+
     cell.date.text = [NSString stringWithFormat:@"%@", [df stringFromDate:firstDate]];
-    
+
+    cell.addToCalendarLabel.hidden = YES;
+    cell.addToCalendarImage.hidden = YES;
+
     [df release];
-    
+
     return cell;
 }
 
@@ -170,8 +178,6 @@
 {
     return NSLocalizedString(@"All teams", @"");
 }
-
-#pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
