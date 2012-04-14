@@ -24,6 +24,7 @@
 @synthesize tableView;
 @synthesize registrations;
 @synthesize attendingRegistrations;
+@synthesize HUD;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,12 +61,21 @@
 {
     [super viewWillAppear:animated];
 
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];    
+    HUD.delegate = self;
+    HUD.labelText = NSLocalizedString(@"Finding events", @"");
+    [HUD showWhileExecuting:@selector(tasksToDoWhileShowingHUD) onTarget:self withObject:nil animated:YES];
+}
+
+- (void)tasksToDoWhileShowingHUD
+{
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
-    
+
     ASIHTTPRequest *requestUserRegistrations = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:kAllRegistrations, [preferences valueForKey:@"serverurl"]]]];
     [requestUserRegistrations setAuthenticationScheme:(NSString *)kCFHTTPAuthenticationSchemeBasic];
     [requestUserRegistrations startSynchronous];
-    
+
     NSError *error = [requestUserRegistrations error];
     //NSLog(@"return string %@", [requestUserRegistrations responseString]);
     //NSLog(@"error code %d", [requestUserRegistrations responseStatusCode]);
@@ -73,7 +83,7 @@
         if ([requestUserRegistrations responseStatusCode] == 200) {
             NSData *jsonData = [requestUserRegistrations responseData];
             NSDictionary *jsonRegistrations = [jsonData objectFromJSONData];
-            
+
             //NSLog(@"user registrations %@", jsonRegistrations);
             NSMutableArray *tmpRegistrations = [[NSMutableArray alloc] initWithArray:[jsonRegistrations objectForKey:@"data"]];
 
@@ -89,8 +99,16 @@
             [tmpRegistrations release];
         }
     }
+}
 
-    //[self.tableView reloadData];
+- (void)hudWasHidden:(MBProgressHUD *)hud
+{
+    [HUD removeFromSuperview];
+    [HUD release];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [self.tableView reloadData];
+    }];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
