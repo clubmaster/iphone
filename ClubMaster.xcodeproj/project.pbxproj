@@ -85,6 +85,8 @@
 		B77133E514C756F200D8BDA5 /* ViewTeamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewTeamViewController.h; sourceTree = "<group>"; };
 		B77133E614C756F200D8BDA5 /* ViewTeamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewTeamViewController.m; sourceTree = "<group>"; };
 		B77133E714C756F200D8BDA5 /* ViewTeamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewTeamViewController.xib; sourceTree = "<group>"; };
+		B7797C52153A0F8A0037BF42 /* MBProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = HUD/MBProgressHUD.h; sourceTree = "<group>"; };
+		B7797C53153A0F8A0037BF42 /* MBProgressHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = HUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		B77C159414E05B1E00413341 /* missing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missing.png; sourceTree = "<group>"; };
 		B77C159814E05CDC00413341 /* gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradient.png; sourceTree = "<group>"; };
 		B7963DE114D07BB70063B03B /* TeamTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamTableViewCell.h; sourceTree = "<group>"; };
@@ -195,6 +197,15 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		B7797C50153A0F740037BF42 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				B7797C52153A0F8A0037BF42 /* MBProgressHUD.h */,
+				B7797C53153A0F8A0037BF42 /* MBProgressHUD.m */,
+			);
+			name = HUD;
+			sourceTree = "<group>";
+		};
 		B7963E1414D0B6BD0063B03B /* JSONKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +287,7 @@
 		B7CB1A251472C3F6002BB32D /* ClubMaster */ = {
 			isa = PBXGroup;
 			children = (
+				B7797C50153A0F740037BF42 /* HUD */,
 				B7963E1A14D0B7900063B03B /* ASI */,
 				B7963E1414D0B6BD0063B03B /* JSONKit */,
 				B7CB1A2E1472C3F6002BB32D /* AppDelegate.h */,
