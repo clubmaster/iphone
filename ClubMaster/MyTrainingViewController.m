@@ -73,8 +73,8 @@
 
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
 
-    self.name.text = [NSString stringWithFormat:@"%@ %@", [[preferences objectForKey:@"user"] objectForKey:@"first_name"], [[preferences objectForKey:@"user"] objectForKey:@"last_name"]];
-    self.email.text = [[preferences objectForKey:@"user"] objectForKey:@"email_address"];
+    self.name.text = [NSString stringWithFormat:@"%@ %@", [preferences objectForKey:@"first_name"], [preferences objectForKey:@"last_name"]];
+    self.email.text = [preferences objectForKey:@"email_address"];
 
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadEventsFromLogin) name:@"loadEventsFromLogin" object:nil];
 }
@@ -156,12 +156,7 @@
     NSDate *endDate = [formatter dateFromString:[data objectForKey:@"end_date"]];
     [formatter release], formatter = nil;
 
-	unsigned int unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit;
-	NSDateComponents *components = [[NSCalendar currentCalendar] components:unitFlags
-                                                                   fromDate:firstDate
-                                                                     toDate:endDate options:0];
-
-    cell.duration.text = [NSString stringWithFormat:@"%02d:%02d", [components hour], [components minute]];
+    cell.duration.text = [Utils timestamp2Caption:([endDate timeIntervalSince1970]-[firstDate timeIntervalSince1970])];
 
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
 
@@ -194,7 +189,7 @@
 
 - (NSString *)tableView:(UITableView *)tw titleForHeaderInSection:(NSInteger)section
 {
-    return @"Sessions";
+    return NSLocalizedString(@"Sessions", @"");
 }
 
 #pragma mark - Table view delegate
