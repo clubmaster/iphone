@@ -9,4 +9,6 @@
 
 @interface SettingsViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UITableView *userIntoTableView;
+
 @end

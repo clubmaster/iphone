@@ -8,10 +8,12 @@
 #import "SettingsViewController.h"
 
 @interface SettingsViewController ()
-- (void)logout;
+- (void)edit;
 @end
 
 @implementation SettingsViewController
+
+@synthesize userIntoTableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,7 +37,8 @@
     [super viewDidLoad];
 
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Logout", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(logout)];
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(edit)];
 }
 
 - (void)viewDidUnload
@@ -68,9 +71,51 @@
     return YES;
 }
 
-- (void)logout
+- (void)edit
 {
     
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tw numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tw cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+
+    UITableViewCell *cell = [userIntoTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+
+    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+
+    if (indexPath.row == 0) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", [preferences objectForKey:@"first_name"], [preferences objectForKey:@"last_name"]];
+    } else if (indexPath.row == 1) {
+        cell.textLabel.text = [preferences objectForKey:@"email_address"];
+    } else if (indexPath.row == 2) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", [preferences objectForKey:@"postal_code"], [preferences objectForKey:@"street"]];
+    }
+
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+}
+
+- (NSString *)tableView:(UITableView *)tw titleForHeaderInSection:(NSInteger)section
+{
+    return NSLocalizedString(@"User information", @"");
 }
 
 @end
