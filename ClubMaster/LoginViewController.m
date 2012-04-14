@@ -72,13 +72,19 @@
             [preferences setObject:urlField.text forKey:@"serverurl"];
             [preferences setObject:usernameField.text forKey:@"username"];
             [preferences setObject:passwordField.text forKey:@"password"];
+            
 
             NSData *jsonData = [request responseData];
             NSDictionary *jsonUser = [jsonData objectFromJSONData];
 
-            //NSLog(@"user %@", jsonUser);
+            //NSLog(@"%@", jsonUser);
 
-            [preferences setObject:[jsonUser objectForKey:@"data"] forKey:@"user"];
+            [preferences setObject:[[jsonUser objectForKey:@"data"] objectForKey:@"first_name"] forKey:@"first_name"];
+            [preferences setObject:[[jsonUser objectForKey:@"data"] objectForKey:@"last_name"] forKey:@"last_name"];
+            [preferences setObject:[[jsonUser objectForKey:@"data"] objectForKey:@"postal_code"] forKey:@"postal_code"];
+            [preferences setObject:[[jsonUser objectForKey:@"data"] objectForKey:@"street"] forKey:@"street"];
+            [preferences setObject:[[jsonUser objectForKey:@"data"] objectForKey:@"email_address"] forKey:@"email_address"];
+
             [preferences synchronize];
 
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadEventsFromLogin" object:nil];
@@ -151,7 +157,7 @@
         if (indexPath.row == 0) {
             playerTextField.text = @"http://demo.clubmaster.dk";
         } else if (indexPath.row == 1) { // && [[preferences valueForKey:@"account"] length]
-            playerTextField.text = @"10";
+            playerTextField.text = @"1";
         } else if (indexPath.row == 2) {
             playerTextField.text = @"1234";
         }
