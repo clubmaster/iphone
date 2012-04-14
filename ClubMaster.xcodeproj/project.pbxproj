@@ -60,6 +60,7 @@
 		B7CB1A3A1472C3F6002BB32D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7CB1A391472C3F6002BB32D /* SettingsViewController.m */; };
 		B7CB1A411472C3F6002BB32D /* MyTrainingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7CB1A3F1472C3F6002BB32D /* MyTrainingViewController.xib */; };
 		B7CB1A441472C3F6002BB32D /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7CB1A421472C3F6002BB32D /* SettingsViewController.xib */; };
+		B7E0365A153A140B002813D6 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B7797C53153A0F8A0037BF42 /* MBProgressHUD.m */; };
 		B7F36A0A1539ADCD00D2C1B2 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F36A091539ADCD00D2C1B2 /* Utils.m */; };
 		B7F6F6EF14E409AA00691BFB /* cal.png in Resources */ = {isa = PBXBuildFile; fileRef = B7F6F6EE14E409AA00691BFB /* cal.png */; };
 		B7F6F70614E4116B00691BFB /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7F6F70514E4116B00691BFB /* EventKit.framework */; };
@@ -437,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7E0365A153A140B002813D6 /* MBProgressHUD.m in Sources */,
 				B7CB1A2C1472C3F6002BB32D /* main.m in Sources */,
 				B7CB1A301472C3F6002BB32D /* AppDelegate.m in Sources */,
 				B7CB1A331472C3F6002BB32D /* MyTrainingViewController.m in Sources */,

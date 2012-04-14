@@ -13,4 +13,5 @@
     #import <Foundation/Foundation.h>
     #import "MyApp.h"
     #import "Utils.h"
+    #import "MBProgressHUD.h"
 #endif

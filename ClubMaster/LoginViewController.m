@@ -10,9 +10,14 @@
 #import "JSONKit.h"
 #import "TableCellDetail.h"
 
+@interface LoginViewController ()
+- (void)tasksToDoWhileShowingHUD;
+@end
+
 @implementation LoginViewController
 
 @synthesize tableView;
+@synthesize HUD;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,67 +54,86 @@
 
 - (IBAction)login:(id)sender
 {
-    //NSLog(@"url %@", [NSString stringWithFormat:kLoginUrl, urlField.text]);
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];    
+    HUD.delegate = self;
+    HUD.labelText = NSLocalizedString(@"Logging in", @"");
+    [HUD showWhileExecuting:@selector(tasksToDoWhileShowingHUD) onTarget:self withObject:nil animated:YES];
+}
 
-    UITableViewCell *urlCell = (UITableViewCell *)[[tableView subviews] objectAtIndex:2];
-    UITextField *urlField = (UITextField *)[[urlCell subviews] objectAtIndex:2];
+- (void)tasksToDoWhileShowingHUD
+{
+    @autoreleasepool {
+        UITableViewCell *urlCell = (UITableViewCell *)[[tableView subviews] objectAtIndex:2];
+        UITextField *urlField = (UITextField *)[[urlCell subviews] objectAtIndex:2];
 
-    UITableViewCell *usernameCell = (UITableViewCell *)[[tableView subviews] objectAtIndex:1];
-    UITextField *usernameField = (UITextField *)[[usernameCell subviews] objectAtIndex:2];
+        UITableViewCell *usernameCell = (UITableViewCell *)[[tableView subviews] objectAtIndex:1];
+        UITextField *usernameField = (UITextField *)[[usernameCell subviews] objectAtIndex:2];
 
-    UITableViewCell *passwordCell = (UITableViewCell *)[[tableView subviews] objectAtIndex:0];
-    UITextField *passwordField = (UITextField *)[[passwordCell subviews] objectAtIndex:2];
+        UITableViewCell *passwordCell = (UITableViewCell *)[[tableView subviews] objectAtIndex:0];
+        UITextField *passwordField = (UITextField *)[[passwordCell subviews] objectAtIndex:2];
 
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:kLoginUrl, urlField.text]]];
-    [request setAuthenticationScheme:(NSString *)kCFHTTPAuthenticationSchemeBasic];
-    [request setUsername:usernameField.text];
-    [request setPassword:passwordField.text];
-    [request startSynchronous];
+        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:kLoginUrl, urlField.text]]];
+        [request setAuthenticationScheme:(NSString *)kCFHTTPAuthenticationSchemeBasic];
+        [request setUsername:usernameField.text];
+        [request setPassword:passwordField.text];
+        [request startSynchronous];
 
-    NSError *error = [request error];
+        NSError *error = [request error];
 
-    if (!error) {
-        if ([request responseStatusCode] == 200) {
-            NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
-            [preferences setObject:urlField.text forKey:@"serverurl"];
-            [preferences setObject:usernameField.text forKey:@"username"];
-            [preferences setObject:passwordField.text forKey:@"password"];
-            
+        if (!error) {
+            if ([request responseStatusCode] == 200) {
+                NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+                [preferences setObject:urlField.text forKey:@"serverurl"];
+                [preferences setObject:usernameField.text forKey:@"username"];
+                [preferences setObject:passwordField.text forKey:@"password"];
 
-            NSData *jsonData = [request responseData];
-            NSDictionary *jsonUser = [jsonData objectFromJSONData];
+                NSData *jsonData = [request responseData];
+                NSDictionary *jsonUser = [jsonData objectFromJSONData];
 
-            //NSLog(@"%@", jsonUser);
+                //NSLog(@"%@", jsonUser);
 
-            [preferences setObject:[[jsonUser objectForKey:@"data"] objectForKey:@"first_name"] forKey:@"first_name"];
-            [preferences setObject:[[jsonUser objectForKey:@"data"] objectForKey:@"last_name"] forKey:@"last_name"];
-            [preferences setObject:[[jsonUser objectForKey:@"data"] objectForKey:@"postal_code"] forKey:@"postal_code"];
-            [preferences setObject:[[jsonUser objectForKey:@"data"] objectForKey:@"street"] forKey:@"street"];
-            [preferences setObject:[[jsonUser objectForKey:@"data"] objectForKey:@"email_address"] forKey:@"email_address"];
+                [preferences setObject:[[jsonUser objectForKey:@"data"] objectForKey:@"first_name"] forKey:@"first_name"];
+                [preferences setObject:[[jsonUser objectForKey:@"data"] objectForKey:@"last_name"] forKey:@"last_name"];
+                [preferences setObject:[[jsonUser objectForKey:@"data"] objectForKey:@"postal_code"] forKey:@"postal_code"];
+                [preferences setObject:[[jsonUser objectForKey:@"data"] objectForKey:@"street"] forKey:@"street"];
+                [preferences setObject:[[jsonUser objectForKey:@"data"] objectForKey:@"email_address"] forKey:@"email_address"];
 
-            [preferences synchronize];
-
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"loadEventsFromLogin" object:nil];
-
-            [self dismissModalViewControllerAnimated:YES];
+                [preferences synchronize];
+            } else {
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Wrong username and or password", @"")
+                                                                    message:nil
+                                                                   delegate:nil
+                                                          cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                    [alert release];
+                }];
+            }
         } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Wrong username and or password", @"")
-                                                            message:nil
-                                                           delegate:nil
-                                                  cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                                  otherButtonTitles:nil];
-            [alert show];
-            [alert release];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Server fail", @"")
+                                                                message:nil
+                                                               delegate:nil
+                                                      cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                                      otherButtonTitles:nil];
+                [alert show];
+                [alert release];
+            }];
         }
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Server fail", @"")
-                                                        message:nil
-                                                       delegate:nil
-                                              cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                              otherButtonTitles:nil];
-        [alert show];
-        [alert release];
     }
+}
+
+- (void)hudWasHidden:(MBProgressHUD *)hud
+{
+    [HUD removeFromSuperview];
+    [HUD release];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadEventsFromLogin" object:nil];
+        [self dismissModalViewControllerAnimated:YES];
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -204,6 +228,7 @@
     NSInteger nextTag = textField.tag + 1;
 
     if (nextTag == 3) {
+        [textField resignFirstResponder];
         [self login:nil];
     } else {        
         UIResponder *nextResponder = [tableView.superview viewWithTag:nextTag];
