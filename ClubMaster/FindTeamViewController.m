@@ -90,7 +90,6 @@
         }
     }
 
-
     //[self.tableView reloadData];
 }
 
@@ -149,12 +148,7 @@
     NSDate *endDate = [formatter dateFromString:[data objectForKey:@"end_date"]];
     [formatter release], formatter = nil;
 
-	unsigned int unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit;
-	NSDateComponents *components = [[NSCalendar currentCalendar] components:unitFlags
-                                                                   fromDate:firstDate
-                                                                     toDate:endDate options:0];
-
-    cell.duration.text = [NSString stringWithFormat:@"%02d:%02d", [components hour], [components minute]];
+    cell.duration.text = [Utils timestamp2Caption:([endDate timeIntervalSince1970]-[firstDate timeIntervalSince1970])];
 
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
 
