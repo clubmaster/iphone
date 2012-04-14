@@ -9,4 +9,8 @@
 
 @interface EventsViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
+
+@property (nonatomic, retain) NSMutableArray *events;
+
 @end

@@ -1,11 +1,10 @@
 //
-//  EventsViewController.m
+//  FindEventViewController.m
 //  ClubMaster
 //
-//  Created by Henrik Hansen on 22/01/12.
+//  Created by Henrik Hansen on 09/02/12.
 //
 
-#import "EventsViewController.h"
 #import "FindEventViewController.h"
 #import "EventTableViewCell.h"
 
@@ -14,22 +13,21 @@
 #import "JSONKit.h"
 #import "ISO8601DateFormatter.h"
 
-@interface EventsViewController ()
-- (void)find;
-- (void)unattend:(UIButton *)sender;
+@interface FindEventViewController ()
+- (void)attend:(UIButton *)sender;
 @end
 
-@implementation EventsViewController
+@implementation FindEventViewController
 
-@synthesize tableView;
 @synthesize events;
+@synthesize tableView;
+@synthesize attendingEvents;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Events", @"");
-        self.tabBarItem.image = [UIImage imageNamed:@"events"];
+        self.title = NSLocalizedString(@"Find event", @"");
     }
     return self;
 }
@@ -44,10 +42,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Find event", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(find)];
 }
 
 - (void)viewDidUnload
@@ -57,32 +51,44 @@
     self.tableView = nil;
 }
 
--(void)viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
 
-    ASIHTTPRequest *requestUserRegistrations = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:kUserEvents, [preferences valueForKey:@"serverurl"]]]];
-    [requestUserRegistrations setAuthenticationScheme:(NSString *)kCFHTTPAuthenticationSchemeBasic];
-    [requestUserRegistrations startSynchronous];
+    ASIHTTPRequest *requestEvents = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:kAllEvents, [preferences valueForKey:@"serverurl"]]]];
+    [requestEvents setAuthenticationScheme:(NSString *)kCFHTTPAuthenticationSchemeBasic];
+    [requestEvents startSynchronous];
 
-    NSError *error = [requestUserRegistrations error];
+    NSError *error = [requestEvents error];
     //NSLog(@"return string %@", [requestUserRegistrations responseString]);
     //NSLog(@"error code %d", [requestUserRegistrations responseStatusCode]);
     if (!error) {
-        if ([requestUserRegistrations responseStatusCode] == 200) {
-            NSData *jsonData = [requestUserRegistrations responseData];
+        if ([requestEvents responseStatusCode] == 200) {
+            NSData *jsonData = [requestEvents responseData];
             NSDictionary *jsonRegistrations = [jsonData objectFromJSONData];
-            //NSLog(@"events %@", jsonRegistrations);
 
-            self.events = [[NSMutableArray alloc] initWithArray:[jsonRegistrations objectForKey:@"data"]];
+            //NSLog(@"user registrations %@", jsonRegistrations);
+            NSMutableArray *tmpEvents = [[NSMutableArray alloc] initWithArray:[jsonRegistrations objectForKey:@"data"]];
 
-            self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", [events count]];
+            for (int i = 0; i < [tmpEvents count]; i++) {
+                NSDictionary *data = [tmpEvents objectAtIndex:i];
+                if ([attendingEvents containsObject:data]) {
+                    NSLog(@"removing %d", i);
+                    [tmpEvents removeObjectAtIndex:i];
+                }
+            }
+
+            self.events = tmpEvents;
+            [tmpEvents release];
         }
     }
+}
 
-    [self.tableView reloadData];
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -98,29 +104,28 @@
 - (UITableViewCell *)tableView:(UITableView *)tw cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-
+    
     EventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        
         NSArray* views = [[NSBundle mainBundle] loadNibNamed:@"EventTableViewCell" owner:nil options:nil];
-
+        
         for (UIView *view in views) {
             if([view isKindOfClass:[UITableViewCell class]]) {
                 cell = (EventTableViewCell *)view;
             }
         }
     }
-
+    
     NSDictionary *data = [events objectAtIndex:indexPath.row];
     //NSLog(@"date %@", data);
 
-    cell.attendButton.hidden = YES;
-    cell.unattendButton.hidden = NO;
+    cell.attendButton.hidden = NO;
 
     cell.attendButton.tag = indexPath.row;
 
-    [cell.unattendButton addTarget:self action:@selector(unattend:) forControlEvents:(UIControlEvents)UIControlEventTouchDown];
+    [cell.attendButton addTarget:self action:@selector(attend:) forControlEvents:(UIControlEvents)UIControlEventTouchDown];
 
     cell.desc.text = [Utils stripTags:[data objectForKey:@"description"]];
     cell.desc.contentInset = UIEdgeInsetsMake(-4,-8,0,0);
@@ -152,7 +157,7 @@
 
 - (NSString *)tableView:(UITableView *)tw titleForHeaderInSection:(NSInteger)section
 {
-    return NSLocalizedString(@"Events", @"");
+    return NSLocalizedString(@"All events", @"");
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -164,50 +169,36 @@
     return 80.0;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (void)attend:(UIButton *)sender
 {
-    return YES;
-}
-
-- (void)find
-{
-    FindEventViewController *findEventViewController = [[FindEventViewController alloc] init];
-    findEventViewController.attendingEvents = events;
-    [self.navigationController pushViewController:findEventViewController animated:YES];
-    [findEventViewController release];
-}
-
-- (void)unattend:(UIButton *)sender
-{
-    NSLog(@"unattend index %d", sender.tag);
+    NSLog(@"attend index %d", sender.tag);
 
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
 
     NSDictionary *data = [events objectAtIndex:sender.tag];
 
-    ASIFormDataRequest *requestUnattend = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:kUnattendEvent, [preferences valueForKey:@"serverurl"], [data objectForKey:@"id"]]]];
-    [requestUnattend setAuthenticationScheme:(NSString *)kCFHTTPAuthenticationSchemeBasic];
-    [requestUnattend startSynchronous];
+    ASIFormDataRequest *requestAttend = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:kAttendEvent, [preferences valueForKey:@"serverurl"], [data objectForKey:@"id"]]]];
+    [requestAttend setAuthenticationScheme:(NSString *)kCFHTTPAuthenticationSchemeBasic];
+    [requestAttend startSynchronous];
 
-    NSError *error = [requestUnattend error];
-    //NSLog(@"status code %d", [requestUnattend responseStatusCode]);
-    //NSLog(@"return string %@", [requestUnattend responseString]);
+    NSError *error = [requestAttend error];
+    NSLog(@"status code %d", [requestAttend responseStatusCode]);
+    NSLog(@"return string %@", [requestAttend responseString]);
 
     if (!error) {
-        if ([requestUnattend responseStatusCode] == 200) {
-            [events removeObjectAtIndex:sender.tag];
+        if ([requestAttend responseStatusCode] == 200) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Attend Success", @"")
+                                                            message:nil
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            [alert release];
 
-            NSIndexPath *indexPath = [tableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
-
-            NSArray *indexPaths = [[[NSArray alloc] initWithObjects:indexPath, nil] autorelease];
-
-            [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-
-            [tableView reloadData];
-
-            self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", [events count]];
+            EventTableViewCell *cell = (EventTableViewCell *)[[sender superview] superview];
+            cell.attendButton.hidden = YES;
         } else {
-            NSData *jsonData = [requestUnattend responseData];
+            NSData *jsonData = [requestAttend responseData];
             NSString *errorMsg = [[jsonData objectFromJSONData] objectForKey:@"error_msg"];
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:errorMsg
@@ -232,6 +223,7 @@
 - (void)dealloc
 {
     [events release];
+    [attendingEvents release];
 
     [super dealloc];
 }
