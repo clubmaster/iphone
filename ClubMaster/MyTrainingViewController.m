@@ -57,7 +57,7 @@
 
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Find team", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(find)];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Find team", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(find)] autorelease];
 }
 
 - (void)viewDidUnload
@@ -65,6 +65,9 @@
     [super viewDidUnload];
 
     self.tableView = nil;
+    self.name = nil;
+    self.email = nil;
+    self.image = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -200,6 +203,7 @@
     viewTeamViewController.data = [registrations objectAtIndex:indexPath.row];
     viewTeamViewController.isAttending = YES;
     [self.navigationController pushViewController:viewTeamViewController animated:YES];
+    [viewTeamViewController release];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -224,7 +228,7 @@
             NSDictionary *jsonRegistrations = [jsonData objectFromJSONData];
 
             //NSLog(@"user registrations %@", jsonRegistrations);
-            self.registrations = [[NSMutableArray alloc] initWithArray:[jsonRegistrations objectForKey:@"data"]];
+            self.registrations = [[[NSMutableArray alloc] initWithArray:[jsonRegistrations objectForKey:@"data"]] autorelease];
 
             self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", [registrations count]];
         }
@@ -238,6 +242,7 @@
     FindTeamViewController *findTeamViewController = [[FindTeamViewController alloc] init];
     findTeamViewController.attendingRegistrations = registrations;
     [self.navigationController pushViewController:findTeamViewController animated:YES];
+    [findTeamViewController release];
 }
 
 - (void)unattend:(UIButton *)sender
@@ -300,12 +305,12 @@
 
     NSDictionary *data = [registrations objectAtIndex:indexPath.row];
 
-    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    EKEventStore *eventStore = [[[EKEventStore alloc] init] autorelease];
 
     EKEvent *event = [EKEvent eventWithEventStore:eventStore];
     event.title = [data objectForKey:@"team_name"];
 
-    ISO8601DateFormatter *formatter = [[ISO8601DateFormatter alloc] init];
+    ISO8601DateFormatter *formatter = [[[ISO8601DateFormatter alloc] init] autorelease];
     event.startDate = [formatter dateFromString:[data objectForKey:@"first_date"]];
     event.endDate = [formatter dateFromString:[data objectForKey:@"end_date"]];
 
@@ -333,6 +338,13 @@
         [alert show];
         [alert release];
     }
+}
+
+- (void)dealloc
+{
+    [registrations release];
+
+    [super dealloc];
 }
 
 @end

@@ -179,6 +179,7 @@
     viewTeamViewController.data = [registrations objectAtIndex:indexPath.row];
     viewTeamViewController.isAttending = NO;
     [self.navigationController pushViewController:viewTeamViewController animated:YES];
+    [viewTeamViewController release];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

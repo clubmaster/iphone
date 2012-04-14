@@ -38,12 +38,14 @@
 
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(edit)];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(edit)] autorelease];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+
+    self.userIntoTableView = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated

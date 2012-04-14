@@ -47,7 +47,7 @@
 
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Find event", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(find)];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Find event", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(find)] autorelease];
 }
 
 - (void)viewDidUnload
@@ -76,7 +76,7 @@
             NSDictionary *jsonRegistrations = [jsonData objectFromJSONData];
             //NSLog(@"events %@", jsonRegistrations);
 
-            self.events = [[NSMutableArray alloc] initWithArray:[jsonRegistrations objectForKey:@"data"]];
+            self.events = [[[NSMutableArray alloc] initWithArray:[jsonRegistrations objectForKey:@"data"]] autorelease];
 
             self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", [events count]];
         }

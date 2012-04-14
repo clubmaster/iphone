@@ -29,13 +29,13 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
 
     UIViewController *myTrainingViewController = [[[MyTrainingViewController alloc] initWithNibName:@"MyTrainingViewController" bundle:nil] autorelease];
-    UINavigationController *viewController1 = [[UINavigationController alloc] initWithRootViewController:myTrainingViewController];
+    UINavigationController *viewController1 = [[[UINavigationController alloc] initWithRootViewController:myTrainingViewController] autorelease];
 
     UIViewController *eventsView = [[[EventsViewController alloc] initWithNibName:@"EventsViewController" bundle:nil] autorelease];
-    UINavigationController *viewController2 = [[UINavigationController alloc] initWithRootViewController:eventsView];
+    UINavigationController *viewController2 = [[[UINavigationController alloc] initWithRootViewController:eventsView] autorelease];
 
     UIViewController *settingsView = [[[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil] autorelease];
-    UINavigationController *viewController3 = [[UINavigationController alloc] initWithRootViewController:settingsView];
+    UINavigationController *viewController3 = [[[UINavigationController alloc] initWithRootViewController:settingsView] autorelease];
 
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, viewController3, nil];

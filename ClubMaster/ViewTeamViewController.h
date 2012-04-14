@@ -14,7 +14,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *unattendingButton;
 
 @property (nonatomic, retain) NSDictionary *data;
-@property BOOL isAttending;
+@property (nonatomic, assign) BOOL isAttending;
 
 - (IBAction)attend:(id)sender;
 - (IBAction)unattend:(id)sender;

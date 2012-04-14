@@ -52,6 +52,10 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+
+    self.tableView = nil;
+    self.attendingButton = nil;
+    self.unattendingButton = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -75,7 +79,7 @@
 
     TableCellDetail *cell = [tw dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[TableCellDetail alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[[TableCellDetail alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
 
     if (indexPath.row == 0) {
@@ -232,6 +236,13 @@
         [alert show];
         [alert release];
     }
+}
+
+-(void) dealloc
+{
+    [data release];
+
+    [super dealloc];
 }
 
 @end

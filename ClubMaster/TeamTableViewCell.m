@@ -32,4 +32,19 @@
     [super setSelected:selected animated:animated];
 }
 
+- (void)dealloc
+{
+    [date release];
+    [time release];
+    [title release];
+    [duration release];
+    [instructor release];
+    [attendButton release];
+    [unattendButton release];
+    [addToCalendarImage release];
+    [addToCalendarLabel release];
+    
+    [super dealloc];
+}
+
 @end

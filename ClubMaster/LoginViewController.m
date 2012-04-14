@@ -38,6 +38,8 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+
+    self.tableView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
