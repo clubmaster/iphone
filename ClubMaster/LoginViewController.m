@@ -135,41 +135,39 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor whiteColor];
 
-        CGRect frame = CGRectMake(120, 12, 145, 30);
+        UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(120, 12, 145, 30)];
+        textField.adjustsFontSizeToFitWidth = YES;
+        textField.textColor = [UIColor blackColor];
+        textField.placeholder = @"";
+        textField.keyboardType = UIKeyboardTypeDefault;
+        textField.delegate = self;
+        textField.tag = indexPath.row;
 
-        UITextField *playerTextField = [[UITextField alloc] initWithFrame:frame];
-        playerTextField.adjustsFontSizeToFitWidth = YES;
-        playerTextField.textColor = [UIColor blackColor];
-        playerTextField.placeholder = @"";
-        playerTextField.keyboardType = UIKeyboardTypeDefault;
-        
         if ([indexPath row] == 0 || [indexPath row] == 1) {
-            playerTextField.returnKeyType = UIReturnKeyNext;
+            textField.returnKeyType = UIReturnKeyNext;
         } else {
-            playerTextField.returnKeyType = UIReturnKeyDone;
-            playerTextField.secureTextEntry = YES;
+            textField.returnKeyType = UIReturnKeyDone;
+            textField.secureTextEntry = YES;
         }
-        
-        playerTextField.backgroundColor = [UIColor whiteColor];
-        playerTextField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
-        playerTextField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
-        playerTextField.textAlignment = UITextAlignmentLeft;
-        playerTextField.tag = indexPath.row;
-        // && ![[preferences valueForKey:@"url"] length]
+
+        textField.backgroundColor = [UIColor whiteColor];
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
+        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        textField.textAlignment = UITextAlignmentLeft;
+        textField.tag = indexPath.row;
+        textField.clearButtonMode = UITextFieldViewModeNever;
+        textField.enabled = YES;
+
         if (indexPath.row == 0) {
-            playerTextField.text = @"http://demo.clubmaster.dk";
-        } else if (indexPath.row == 1) { // && [[preferences valueForKey:@"account"] length]
-            playerTextField.text = @"1";
+            textField.text = @"http://demo.clubmaster.dk";
+        } else if (indexPath.row == 1) {
+            textField.text = @"1";
         } else if (indexPath.row == 2) {
-            playerTextField.text = @"1234";
+            textField.text = @"1234";
         }
-        
-        playerTextField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
-        [playerTextField setEnabled: YES];
-        
-        [cell addSubview:playerTextField];
-        
-        [playerTextField release];
+
+        [cell addSubview:textField];
+        [textField release];
     }
 
     if ([indexPath row] == 0) {
@@ -187,6 +185,37 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    tableView.frame = CGRectMake(tableView.frame.origin.x, tableView.frame.origin.y - 210.0, 
+                                  tableView.frame.size.width, tableView.frame.size.height);
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    tableView.frame = CGRectMake(tableView.frame.origin.x, tableView.frame.origin.y + 210.0, 
+                                  tableView.frame.size.width, tableView.frame.size.height);
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSInteger nextTag = textField.tag + 1;
+
+    if (nextTag == 3) {
+        [self login:nil];
+    } else {        
+        UIResponder *nextResponder = [tableView.superview viewWithTag:nextTag];
+
+        if (nextResponder) {
+            [nextResponder becomeFirstResponder];
+        } else {
+            [textField resignFirstResponder];
+        }
+    }
+
+    return NO;
 }
 
 @end

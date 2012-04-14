@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController  <UITableViewDelegate>
+@interface LoginViewController : UIViewController  <UITableViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 
