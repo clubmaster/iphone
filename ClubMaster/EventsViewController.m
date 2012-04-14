@@ -14,15 +14,19 @@
 #import "JSONKit.h"
 #import "ISO8601DateFormatter.h"
 
+#import <EventKit/EventKit.h>
+
 @interface EventsViewController ()
 - (void)find;
 - (void)unattend:(UIButton *)sender;
+- (void)addToCalendar:(UITapGestureRecognizer *)sender;
 @end
 
 @implementation EventsViewController
 
 @synthesize tableView;
 @synthesize events;
+@synthesize HUD;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -61,6 +65,15 @@
 {
     [super viewWillAppear:animated];
 
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];    
+    HUD.delegate = self;
+    HUD.labelText = NSLocalizedString(@"Loading events", @"");
+    [HUD showWhileExecuting:@selector(tasksToDoWhileShowingHUD) onTarget:self withObject:nil animated:YES];
+}
+
+- (void)tasksToDoWhileShowingHUD
+{
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
 
     ASIHTTPRequest *requestUserRegistrations = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:kUserEvents, [preferences valueForKey:@"serverurl"]]]];
@@ -77,12 +90,19 @@
             //NSLog(@"events %@", jsonRegistrations);
 
             self.events = [[[NSMutableArray alloc] initWithArray:[jsonRegistrations objectForKey:@"data"]] autorelease];
-
-            self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", [events count]];
         }
     }
+}
 
-    [self.tableView reloadData];
+- (void)hudWasHidden:(MBProgressHUD *)hud
+{
+    [HUD removeFromSuperview];
+    [HUD release];
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", [events count]];
+        [self.tableView reloadData];
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -142,8 +162,19 @@
 
     cell.date.text = [NSString stringWithFormat:@"%@", [df stringFromDate:startDate]];
 
-    //cell.addToCalendarLabel.hidden = YES;
-    //cell.addToCalendarImage.hidden = YES;
+    cell.addToCalendarImage.userInteractionEnabled = YES;
+
+    UITapGestureRecognizer *addToCalImageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addToCalendar:)];
+    addToCalImageTap.cancelsTouchesInView = YES;
+    [cell.addToCalendarImage addGestureRecognizer:addToCalImageTap];
+    [addToCalImageTap release];
+
+    cell.addToCalendarLabel.userInteractionEnabled = YES;
+
+    UITapGestureRecognizer *addToCalLabelTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addToCalendar:)];
+    addToCalLabelTap.cancelsTouchesInView = YES;
+    [cell.addToCalendarLabel addGestureRecognizer:addToCalLabelTap];
+    [addToCalLabelTap release];
 
     [df release];
 
@@ -179,7 +210,7 @@
 
 - (void)unattend:(UIButton *)sender
 {
-    NSLog(@"unattend index %d", sender.tag);
+    //NSLog(@"unattend index %d", sender.tag);
 
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
 
@@ -220,6 +251,49 @@
         }
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Server fail", @"")
+                                                        message:nil
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+}
+
+- (void)addToCalendar:(UITapGestureRecognizer *)sender
+{
+    NSIndexPath *indexPath = [tableView indexPathForCell:(UITableViewCell *)[[[sender view] superview] superview]];
+
+    NSLog(@"add to cal tapped %d", indexPath.row);
+
+    NSDictionary *data = [events objectAtIndex:indexPath.row];
+
+    EKEventStore *eventStore = [[[EKEventStore alloc] init] autorelease];
+
+    EKEvent *event = [EKEvent eventWithEventStore:eventStore];
+    event.title = [data objectForKey:@"team_name"];
+
+    ISO8601DateFormatter *formatter = [[[ISO8601DateFormatter alloc] init] autorelease];
+    event.startDate = [formatter dateFromString:[data objectForKey:@"start_date"]];
+    event.endDate = [formatter dateFromString:[data objectForKey:@"stop_date"]];
+
+    [event setCalendar:[eventStore defaultCalendarForNewEvents]];
+
+    [event addAlarm:[EKAlarm alarmWithRelativeOffset:60.0f * -15.0f]];
+
+    NSError *eventError;
+    [eventStore saveEvent:event span:EKSpanThisEvent error:&eventError]; 
+
+    if (eventError) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"")
+                                                        message:[eventError localizedDescription]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Event added to calendar", @"")
                                                         message:nil
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
