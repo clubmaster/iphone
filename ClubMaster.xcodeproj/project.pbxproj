@@ -16,6 +16,8 @@
 		B719CC5B14C3534600972C7F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B719CC5A14C3534600972C7F /* MobileCoreServices.framework */; };
 		B719CC5D14C3535F00972C7F /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B719CC5C14C3535F00972C7F /* libz.1.2.5.dylib */; };
 		B7228B5314CCA1D900FCC786 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B7228B5214CCA1D900FCC786 /* ISO8601DateFormatter.m */; };
+		B75E049F1539D71F00C6A500 /* EventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B75E049E1539D71F00C6A500 /* EventTableViewCell.m */; };
+		B75E04A21539D7AA00C6A500 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B75E04A11539D7AA00C6A500 /* EventTableViewCell.xib */; };
 		B77133E814C756F200D8BDA5 /* ViewTeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B77133E614C756F200D8BDA5 /* ViewTeamViewController.m */; };
 		B77133E914C756F200D8BDA5 /* ViewTeamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B77133E714C756F200D8BDA5 /* ViewTeamViewController.xib */; };
 		B77C159514E05B1E00413341 /* missing.png in Resources */ = {isa = PBXBuildFile; fileRef = B77C159414E05B1E00413341 /* missing.png */; };
@@ -46,6 +48,8 @@
 		B7963E4C14D0B7ED0063B03B /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = B7963E4314D0B7ED0063B03B /* settings.png */; };
 		B7A13B2D14D730E400BBB642 /* clubmaster_logo_320x314.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A13B2C14D730E400BBB642 /* clubmaster_logo_320x314.png */; };
 		B7A13B3014D7339C00BBB642 /* unattend.png in Resources */ = {isa = PBXBuildFile; fileRef = B7A13B2F14D7339C00BBB642 /* unattend.png */; };
+		B7A7D8C714E46B2D0085A9FB /* FindEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A7D8C514E46B2C0085A9FB /* FindEventViewController.m */; };
+		B7A7D8C814E46B2D0085A9FB /* FindEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7A7D8C614E46B2D0085A9FB /* FindEventViewController.xib */; };
 		B7CB1A201472C3F6002BB32D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7CB1A1F1472C3F6002BB32D /* UIKit.framework */; };
 		B7CB1A221472C3F6002BB32D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7CB1A211472C3F6002BB32D /* Foundation.framework */; };
 		B7CB1A241472C3F6002BB32D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7CB1A231472C3F6002BB32D /* CoreGraphics.framework */; };
@@ -56,6 +60,7 @@
 		B7CB1A3A1472C3F6002BB32D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7CB1A391472C3F6002BB32D /* SettingsViewController.m */; };
 		B7CB1A411472C3F6002BB32D /* MyTrainingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7CB1A3F1472C3F6002BB32D /* MyTrainingViewController.xib */; };
 		B7CB1A441472C3F6002BB32D /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7CB1A421472C3F6002BB32D /* SettingsViewController.xib */; };
+		B7F36A0A1539ADCD00D2C1B2 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B7F36A091539ADCD00D2C1B2 /* Utils.m */; };
 		B7F6F6EF14E409AA00691BFB /* cal.png in Resources */ = {isa = PBXBuildFile; fileRef = B7F6F6EE14E409AA00691BFB /* cal.png */; };
 		B7F6F70614E4116B00691BFB /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7F6F70514E4116B00691BFB /* EventKit.framework */; };
 /* End PBXBuildFile section */
@@ -74,6 +79,9 @@
 		B719CC5C14C3535F00972C7F /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		B7228B5114CCA1D900FCC786 /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
 		B7228B5214CCA1D900FCC786 /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
+		B75E049D1539D71F00C6A500 /* EventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTableViewCell.h; sourceTree = "<group>"; };
+		B75E049E1539D71F00C6A500 /* EventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTableViewCell.m; sourceTree = "<group>"; };
+		B75E04A11539D7AA00C6A500 /* EventTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		B77133E514C756F200D8BDA5 /* ViewTeamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewTeamViewController.h; sourceTree = "<group>"; };
 		B77133E614C756F200D8BDA5 /* ViewTeamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewTeamViewController.m; sourceTree = "<group>"; };
 		B77133E714C756F200D8BDA5 /* ViewTeamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewTeamViewController.xib; sourceTree = "<group>"; };
@@ -122,6 +130,9 @@
 		B7963E4314D0B7ED0063B03B /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings.png; path = images/settings.png; sourceTree = "<group>"; };
 		B7A13B2C14D730E400BBB642 /* clubmaster_logo_320x314.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clubmaster_logo_320x314.png; sourceTree = "<group>"; };
 		B7A13B2F14D7339C00BBB642 /* unattend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unattend.png; sourceTree = "<group>"; };
+		B7A7D8C414E46B2B0085A9FB /* FindEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindEventViewController.h; sourceTree = "<group>"; };
+		B7A7D8C514E46B2C0085A9FB /* FindEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindEventViewController.m; sourceTree = "<group>"; };
+		B7A7D8C614E46B2D0085A9FB /* FindEventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindEventViewController.xib; sourceTree = "<group>"; };
 		B7CB1A1B1472C3F6002BB32D /* ClubMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClubMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7CB1A1F1472C3F6002BB32D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B7CB1A211472C3F6002BB32D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -138,6 +149,8 @@
 		B7CB1A391472C3F6002BB32D /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B7CB1A401472C3F6002BB32D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MyTrainingViewController.xib; sourceTree = "<group>"; };
 		B7CB1A431472C3F6002BB32D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SettingsViewController.xib; sourceTree = "<group>"; };
+		B7F36A081539ADCD00D2C1B2 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		B7F36A091539ADCD00D2C1B2 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		B7F6F6EE14E409AA00691BFB /* cal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cal.png; sourceTree = "<group>"; };
 		B7F6F70514E4116B00691BFB /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		B7FB5D5714744D8100100B37 /* MyApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyApp.h; sourceTree = "<group>"; };
@@ -267,8 +280,12 @@
 				B7963E1414D0B6BD0063B03B /* JSONKit */,
 				B7CB1A2E1472C3F6002BB32D /* AppDelegate.h */,
 				B7CB1A2F1472C3F6002BB32D /* AppDelegate.m */,
+				B75E049D1539D71F00C6A500 /* EventTableViewCell.h */,
+				B75E049E1539D71F00C6A500 /* EventTableViewCell.m */,
 				B7963E0C14D0B60C0063B03B /* EventsViewController.h */,
 				B7963E0D14D0B60C0063B03B /* EventsViewController.m */,
+				B7A7D8C414E46B2B0085A9FB /* FindEventViewController.h */,
+				B7A7D8C514E46B2C0085A9FB /* FindEventViewController.m */,
 				B7963DF714D09AC60063B03B /* FindTeamViewController.h */,
 				B7963DF814D09AC60063B03B /* FindTeamViewController.m */,
 				B7228B5114CCA1D900FCC786 /* ISO8601DateFormatter.h */,
@@ -280,6 +297,8 @@
 				B7FB5D5714744D8100100B37 /* MyApp.h */,
 				B7CB1A381472C3F6002BB32D /* SettingsViewController.h */,
 				B7CB1A391472C3F6002BB32D /* SettingsViewController.m */,
+				B7F36A081539ADCD00D2C1B2 /* Utils.h */,
+				B7F36A091539ADCD00D2C1B2 /* Utils.m */,
 				B710753714C89AC900BB0B66 /* TableCellEventList.h */,
 				B710753814C89AC900BB0B66 /* TableCellEventList.m */,
 				B710754314C8B27000BB0B66 /* TableCellDetail.h */,
@@ -310,7 +329,9 @@
 			isa = PBXGroup;
 			children = (
 				B7963E1814D0B7360063B03B /* EventsViewController.xib */,
+				B75E04A11539D7AA00C6A500 /* EventTableViewCell.xib */,
 				B7963DF914D09AC60063B03B /* FindTeamViewController.xib */,
+				B7A7D8C614E46B2D0085A9FB /* FindEventViewController.xib */,
 				B719CC3114C3424A00972C7F /* LoginViewController.xib */,
 				B7CB1A3F1472C3F6002BB32D /* MyTrainingViewController.xib */,
 				B7CB1A421472C3F6002BB32D /* SettingsViewController.xib */,
@@ -346,7 +367,7 @@
 		B7CB1A121472C3F5002BB32D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "WebHouse ApS";
 			};
 			buildConfigurationList = B7CB1A151472C3F5002BB32D /* Build configuration list for PBXProject "ClubMaster" */;
@@ -392,6 +413,8 @@
 				B77C159514E05B1E00413341 /* missing.png in Resources */,
 				B77C159914E05CDC00413341 /* gradient.png in Resources */,
 				B7F6F6EF14E409AA00691BFB /* cal.png in Resources */,
+				B7A7D8C814E46B2D0085A9FB /* FindEventViewController.xib in Resources */,
+				B75E04A21539D7AA00C6A500 /* EventTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +447,9 @@
 				B7963E3514D0B79D0063B03B /* ASIInputStream.m in Sources */,
 				B7963E3614D0B79D0063B03B /* ASINetworkQueue.m in Sources */,
 				B7963E3A14D0B7B60063B03B /* Reachability.m in Sources */,
+				B7A7D8C714E46B2D0085A9FB /* FindEventViewController.m in Sources */,
+				B7F36A0A1539ADCD00D2C1B2 /* Utils.m in Sources */,
+				B75E049F1539D71F00C6A500 /* EventTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
